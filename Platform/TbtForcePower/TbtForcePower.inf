@@ -1,0 +1,26 @@
+[Defines]
+  BASE_NAME   = TbtForcePower
+  FILE_GUID   = 58494DD6-15F8-440B-AAC5-8AF49EC53036
+  MODULE_TYPE = UEFI_DRIVER
+  ENTRY_POINT = TbtForcePowerMain
+  INF_VERSION = 0x00010005
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  KabylakeOpenBoardPkg/OpenBoardPkg.dec
+  KabylakeSiliconPkg/SiPkg.dec
+
+[Guids]
+  gTbtInfoHobGuid
+
+[LibraryClasses]
+  GpioExpanderLib
+  GpioLib
+  HobLib
+  IoLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+
+[Sources]
+  TbtForcePower.c
