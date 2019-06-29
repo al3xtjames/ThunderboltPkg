@@ -3,7 +3,7 @@
 
 #include <Pi/PiHob.h>
 
-#pragma pack(1)
+#pragma pack(push, 1)
 
 //
 // TBT GPIO Data Structure
@@ -36,6 +36,11 @@ typedef struct _AMI_TBT_INFO_HOB {
   AMI_TBT_GPIO_INFO ForcePwrGpio;
   AMI_TBT_GPIO_INFO CioPlugEventGpio;
 
+#if 0
+  //
+  // These fields may not be present in all revisions of the HOB.
+  //
+
   UINT8             TbtSupport;
   UINT8             TbtSelector;
   UINT8             TbtSwapSelector;
@@ -66,8 +71,9 @@ typedef struct _AMI_TBT_INFO_HOB {
   UINT16            ReservePMemoryPerSlot;
   UINT8             AssignIO;
   UINT8             ReserveIOPerSlot;
+#endif
 } AMI_TBT_INFO_HOB;
 
-#pragma pack()
+#pragma pack(pop)
 
 #endif // AMI_TBT_HOB_H
