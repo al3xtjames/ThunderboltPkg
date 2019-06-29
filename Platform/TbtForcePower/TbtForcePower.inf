@@ -12,9 +12,11 @@
   KabylakeSiliconPkg/SiPkg.dec
 
 [Guids]
+  # 74A81EAA-033C-4783-BE2B-848574A697B7
   gTbtInfoHobGuid
 
 [LibraryClasses]
+  DebugLib
   GpioExpanderLib
   GpioLib
   HobLib

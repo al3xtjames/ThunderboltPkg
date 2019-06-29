@@ -11,7 +11,8 @@
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
   ConfigBlockLib|KabylakeSiliconPkg/Library/BaseConfigBlockLib/BaseConfigBlockLib.inf
-  DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
+  DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
+  DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
   DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
   GpioExpanderLib|KabylakeOpenBoardPkg/Library/BaseGpioExpanderLib/BaseGpioExpanderLib.inf
   GpioLib|KabylakeSiliconPkg/Pch/Library/PeiDxeSmmGpioLib/PeiDxeSmmGpioLib.inf
@@ -38,6 +39,21 @@
 
 [Components]
   ThunderboltPkg/Platform/TbtForcePower/TbtForcePower.inf
+
+[PcdsFixedAtBuild]
+!if $(TARGET) == RELEASE
+  # DEBUG_PRINT_ENABLED
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|2
+  # DEBUG_ERROR | DEBUG_WARN
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000002
+  gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel|0x80000002
+!else
+  # DEBUG_ASSERT_ENABLED | DEBUG_PRINT_ENABLED | DEBUG_CODE_ENABLED | CLEAR_MEMORY_ENABLED | ASSERT_DEADLOOP_ENABLED
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2f
+  # DEBUG_ERROR | DEBUG_WARN | DEBUG_INFO
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000042
+  gEfiMdePkgTokenSpaceGuid.PcdFixedDebugPrintErrorLevel|0x80000042
+!endif
 
 [BuildOptions]
   GCC:DEBUG_*_*_CC_FLAGS     = -D DISABLE_NEW_DEPRECATED_INTERFACES
