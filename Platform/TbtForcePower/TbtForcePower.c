@@ -52,6 +52,7 @@ TbtForcePowerMain (
 
     return EFI_SUCCESS;
   } else {
+    DEBUG ((DEBUG_ERROR, "Thunderbolt Info HOB was not found\n"));
     return EFI_NOT_FOUND;
   }
 }
