@@ -25,5 +25,5 @@
   UefiDriverEntryPoint
 
 [Sources]
-  AmiTbtInfoHob.h
+  AmiTbtHob.h
   TbtForcePower.c

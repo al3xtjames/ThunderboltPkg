@@ -19,6 +19,8 @@ TbtForcePowerMain (
   IN EFI_SYSTEM_TABLE *SystemTable
   )
 {
+  UINT8            GpioPchAccessType;
+  UINT8            GpioExpanderAccessType;
   EFI_STATUS       Status;
   AMI_TBT_INFO_HOB *TbtInfoHob;
 
@@ -34,14 +36,17 @@ TbtForcePowerMain (
       TbtInfoHob->ForcePwrGpio.GpioNumber
       ));
 
-    if (TbtInfoHob->ForcePwrGpio.GpioAccessType == 0x01) {
+    GpioPchAccessType = TbtInfoHob->RevisionId > 1 ? 0x01 : 0x00;
+    GpioExpanderAccessType = TbtInfoHob->RevisionId > 1 ? 0x02 : 0x01;
+
+    if (TbtInfoHob->ForcePwrGpio.GpioAccessType == GpioPchAccessType) {
       // PCH
       Status = GpioSetOutputValue (TbtInfoHob->ForcePwrGpio.GpioNumber, 1);
       if (EFI_ERROR (Status)) {
         DEBUG ((DEBUG_ERROR, "Failed to write GPIO - %r\n", Status));
         return Status;
       }
-    } else if (TbtInfoHob->ForcePwrGpio.GpioAccessType == 0x02) {
+    } else if (TbtInfoHob->ForcePwrGpio.GpioAccessType == GpioExpanderAccessType) {
       // IoExpander {TCA6424A}
       GpioExpSetOutput (
         TbtInfoHob->ForcePwrGpio.Expander,
