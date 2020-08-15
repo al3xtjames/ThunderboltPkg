@@ -28,27 +28,38 @@
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
   ConfigBlockLib|IntelSiliconPkg/Library/BaseConfigBlockLib/BaseConfigBlockLib.inf
+  CpuLib|MdePkg/Library/BaseCpuLib/BaseCpuLib.inf
+  CpuPlatformLib|CoffeelakeSiliconPkg/Cpu/Library/PeiDxeSmmCpuPlatformLib/PeiDxeSmmCpuPlatformLib.inf
   DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
   DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
   DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
-  GpioExpanderLib|KabylakeOpenBoardPkg/Library/BaseGpioExpanderLib/BaseGpioExpanderLib.inf
-  GpioLib|KabylakeSiliconPkg/Pch/Library/PeiDxeSmmGpioLib/PeiDxeSmmGpioLib.inf
+  GpioHelpersLib|CoffeelakeSiliconPkg/Pch/Library/Private/BaseGpioHelpersLibNull/BaseGpioHelpersLibNull.inf
+  GpioLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmGpioLib/PeiDxeSmmGpioLib.inf
+  GpioNameBufferLib|CoffeelakeSiliconPkg/Pch/Library/Private/DxeGpioNameBufferLib/DxeGpioNameBufferLib.inf
+  GpioPrivateLib|CoffeelakeSiliconPkg/Pch/Library/Private/PeiDxeSmmGpioPrivateLib/PeiDxeSmmGpioPrivateLibCnl.inf
   HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
-  I2cAccessLib|KabylakeOpenBoardPkg/Library/PeiI2cAccessLib/PeiI2cAccessLib.inf
+  I2cAccessLib|WhiskeylakeOpenBoardPkg/Library/PeiI2cAccessLib/PeiI2cAccessLib.inf
   IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
   MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
-  MmPciLib|KabylakeSiliconPkg/Library/PeiDxeSmmMmPciLib/PeiDxeSmmMmPciLib.inf
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
-  PchCycleDecodingLib|KabylakeSiliconPkg/Pch/Library/PeiDxeSmmPchCycleDecodingLib/PeiDxeSmmPchCycleDecodingLib.inf
-  PchInfoLib|KabylakeSiliconPkg/Pch/Library/PeiDxeSmmPchInfoLib/PeiDxeSmmPchInfoLib.inf
-  PchP2sbLib|KabylakeSiliconPkg/Pch/Library/PeiDxeSmmPchP2sbLib/PeiDxeSmmPchP2sbLib.inf
-  PchPcrLib|KabylakeSiliconPkg/Pch/Library/PeiDxeSmmPchPcrLib/PeiDxeSmmPchPcrLib.inf
-  PchPsfLib|KabylakeSiliconPkg/Pch/Library/PeiDxeSmmPchPsfLib/PeiDxeSmmPchPsfLib.inf
-  PchSbiAccessLib|KabylakeSiliconPkg/Pch/Library/PeiDxeSmmPchSbiAccessLib/PeiDxeSmmPchSbiAccessLib.inf
-  PchSerialIoLib|KabylakeSiliconPkg/Pch/Library/PeiDxeSmmPchSerialIoLib/PeiDxeSmmPchSerialIoLib.inf
+  PchCycleDecodingLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmPchCycleDecodingLib/PeiDxeSmmPchCycleDecodingLib.inf
+  PchDmiLib|CoffeelakeSiliconPkg/Pch/Library/Private/PeiDxeSmmPchDmiLib/PeiDxeSmmPchDmiLib.inf
+  PchEspiLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmPchEspiLib/PeiDxeSmmPchEspiLib.inf
+  PchInfoLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmPchInfoLib/PeiDxeSmmPchInfoLibCnl.inf
+  PchPcrLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmPchPcrLib/PeiDxeSmmPchPcrLib.inf
+  PchPsfPrivateLib|CoffeelakeSiliconPkg/Pch/Library/Private/PeiDxeSmmPchPsfPrivateLib/PeiDxeSmmPchPsfPrivateLibCnl.inf
+  PchSbiAccessLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmPchSbiAccessLib/PeiDxeSmmPchSbiAccessLib.inf
+  PchSerialIoLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmPchSerialIoLib/PeiDxeSmmPchSerialIoLibCnl.inf
+  PchSerialIoUartLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmPchSerialIoUartLib/PeiDxeSmmPchSerialIoUartLib.inf
   PciCf8Lib|MdePkg/Library/BasePciCf8Lib/BasePciCf8Lib.inf
+  PciLib|MdePkg/Library/UefiPciLibPciRootBridgeIo/UefiPciLibPciRootBridgeIo.inf
+  PciSegmentLib|MdePkg/Library/BasePciSegmentLibPci/BasePciSegmentLibPci.inf
+  PmcLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmPmcLib/PeiDxeSmmPmcLib.inf
+  PmcPrivateLib|CoffeelakeSiliconPkg/Pch/Library/Private/PeiDxeSmmPmcPrivateLib/PeiDxeSmmPmcPrivateLibCnl.inf
   PrintLib|MdePkg/Library/BasePrintLib/BasePrintLib.inf
-  SmiHandlerProfileLib|MdePkg/Library/SmiHandlerProfileLibNull/SmiHandlerProfileLibNull.inf
+  SaPlatformLib|CoffeelakeSiliconPkg/SystemAgent/Library/PeiDxeSmmSaPlatformLib/PeiDxeSmmSaPlatformLib.inf
+  SataLib|CoffeelakeSiliconPkg/Pch/Library/PeiDxeSmmSataLib/PeiDxeSmmSataLibCnl.inf
+  SynchronizationLib|MdePkg/Library/BaseSynchronizationLib/BaseSynchronizationLib.inf
   TimerLib|MdePkg/Library/BaseTimerLibNullTemplate/BaseTimerLibNullTemplate.inf
   UefiBootServicesTableLib|MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
   UefiDriverEntryPoint|MdePkg/Library/UefiDriverEntryPoint/UefiDriverEntryPoint.inf

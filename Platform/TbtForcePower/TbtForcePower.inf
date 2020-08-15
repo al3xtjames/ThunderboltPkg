@@ -23,10 +23,10 @@
   INF_VERSION = 0x00010005
 
 [Packages]
+  CoffeelakeSiliconPkg/SiPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  KabylakeOpenBoardPkg/OpenBoardPkg.dec
-  KabylakeSiliconPkg/SiPkg.dec
+  WhiskeylakeOpenBoardPkg/OpenBoardPkg.dec
 
 [Guids]
   # 74A81EAA-033C-4783-BE2B-848574A697B7
@@ -34,7 +34,6 @@
 
 [LibraryClasses]
   DebugLib
-  GpioExpanderLib
   GpioLib
   HobLib
   IoLib
@@ -42,5 +41,4 @@
   UefiDriverEntryPoint
 
 [Sources]
-  AmiTbtHob.h
   TbtForcePower.c

@@ -17,7 +17,6 @@
 #include <Pi/PiMultiPhase.h>
 
 #include <Library/DebugLib.h>
-#include <Library/GpioExpanderLib.h>
 #include <Library/GpioLib.h>
 #include <Library/HobLib.h>
 #include <Library/IoLib.h>
@@ -26,8 +25,6 @@
 
 #include <TbtBoardInfo.h>
 
-#include "AmiTbtHob.h"
-
 EFI_STATUS
 EFIAPI
 TbtForcePowerMain (
@@ -35,45 +32,32 @@ TbtForcePowerMain (
   IN EFI_SYSTEM_TABLE  *SystemTable
   )
 {
-  UINT8            GpioPchAccessType;
-  UINT8            GpioExpanderAccessType;
   EFI_STATUS       Status;
-  AMI_TBT_INFO_HOB *TbtInfoHob;
+  TBT_INFO_HOB     *TbtInfoHob;
 
-  TbtInfoHob = (AMI_TBT_INFO_HOB *) GetFirstGuidHob (&gTbtInfoHobGuid);
+  TbtInfoHob = (TBT_INFO_HOB *) GetFirstGuidHob (&gTbtInfoHobGuid);
   if (TbtInfoHob != NULL) {
-    ASSERT (TbtInfoHob->EfiHobGuidType.Header.HobLength >= sizeof (AMI_TBT_INFO_HOB));
+    ASSERT (TbtInfoHob->EfiHobGuidType.Header.HobLength >= sizeof (TBT_INFO_HOB));
 
+    // TODO: WHL/CML can have up to 2 DTBT_CONTROLLER_CONFIG entries, check both
     DEBUG ((
       DEBUG_INFO,
-      "GpioAccessType = 0x%X, Expander = 0x%X, GpioNumber = 0x%X\n",
-      TbtInfoHob->ForcePwrGpio.GpioAccessType,
-      TbtInfoHob->ForcePwrGpio.Expander,
-      TbtInfoHob->ForcePwrGpio.GpioNumber
+      "GpioPad = 0x%X\n",
+      TbtInfoHob->DTbtControllerConfig[0].ForcePwrGpio.GpioPad
       ));
 
-    GpioPchAccessType = TbtInfoHob->RevisionId > 1 ? 0x01 : 0x00;
-    GpioExpanderAccessType = TbtInfoHob->RevisionId > 1 ? 0x02 : 0x01;
+    Status = GpioSetOutputValue (
+      TbtInfoHob->DTbtControllerConfig[0].ForcePwrGpio.GpioPad,
+      1
+      );
 
-    if (TbtInfoHob->ForcePwrGpio.GpioAccessType == GpioPchAccessType) {
-      // PCH
-      Status = GpioSetOutputValue (TbtInfoHob->ForcePwrGpio.GpioNumber, 1);
-      if (EFI_ERROR (Status)) {
-        DEBUG ((DEBUG_ERROR, "Failed to write GPIO - %r\n", Status));
-        return Status;
-      }
-    } else if (TbtInfoHob->ForcePwrGpio.GpioAccessType == GpioExpanderAccessType) {
-      // IoExpander {TCA6424A}
-      GpioExpSetOutput (
-        TbtInfoHob->ForcePwrGpio.Expander,
-        TbtInfoHob->ForcePwrGpio.GpioNumber,
-        1
-        );
+    if (EFI_ERROR (Status)) {
+      DEBUG ((DEBUG_ERROR, "Failed to write GPIO - %r\n", Status));
+      return Status;
     }
 
     return EFI_SUCCESS;
   } else {
-    DEBUG ((DEBUG_ERROR, "Thunderbolt Info HOB was not found\n"));
     return EFI_NOT_FOUND;
   }
 }
